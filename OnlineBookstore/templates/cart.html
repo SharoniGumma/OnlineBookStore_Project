@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2> Your Cart</h2>
+{% if orders %}
+<table>
+    <thead>
+        <tr>
+            <th>Book </th>
+            <th>Quantity </th>
+            <th>Price </th>
+            <th>Total </th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}
+            <tr>
+                <td> {{ order.book.title}} </td>
+                <td> {{order.quantity}} </td>
+                <td> ₹{{order.book.price}} </td>
+                <td> ₹{{order.total_price}} </td>
+            </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{%  endif %}
+{% endblock %}

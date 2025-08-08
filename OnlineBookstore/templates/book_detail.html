@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if book.image %}
+    <img src="{{book.image.url}}" alt="{{ book.title}}" style="max-width: 100px;">
+{% else %}
+    <p>No image available.</p>
+{% endif %}
+<h2>{{ book.title }}</h2>
+<p>{{ book.description }}</p>
+<p>Price: ₹{{ book.price }}</p>
+<form method="post" action="{% url 'add_to_cart' book.id %}">
+    {% csrf_token %}
+    <label>Quantity: </label>
+    <input type="number" name="quantity" min="1" value="1">
+    <button type="submit"> Add to Cart </button>
+</form>
+{% endblock %}
